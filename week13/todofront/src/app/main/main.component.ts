@@ -109,7 +109,9 @@ export class MainComponent implements OnInit {
   }
   auth() {
     if (this.login !== "" && this.password !== "") {
+      console.log(this.login + this.password);
       this.provider.auth(this.login, this.password).then(res => {
+        console.log(res);
         localStorage.setItem("token", res.token);
         this.logged = true;
         this.provider.getTaskLists().then(res => {
@@ -128,11 +130,9 @@ export class MainComponent implements OnInit {
     this.taskListId = null;
   }
   logout() {
-    this.provider.logout().then(res => {
+    
       localStorage.clear();
-      this.logged = false;
-      this.clearData();
-    });
+      
   }
 
 }
